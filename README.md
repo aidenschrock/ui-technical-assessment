@@ -1,4 +1,16 @@
+# UI-Technical-Assessment
+
+Instructions
+- Build UI as per http://tinyimg.io/i/haZ16Ur.png
+- Use Angular 9 or higher
+- Sample API is provided in JS part
+- Credit factors should show the color as per the API.
+  For example: If total accounts > 8, Box should have green highlight. Yellow for 8 <=3 and red for < 3
+- Bonus feature : When user click on anywhere, randomize the results (score, credit factors etc)
+
 # MyApp
+
+![demonstration of credit score UI](https://media.giphy.com/media/73NQqP6NxtA93QByPd/giphy.gif)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.4.
 
