@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import * as d3 from 'd3';
-import { svg } from 'd3';
 
 @Component({
   selector: 'app-root',
@@ -39,17 +37,17 @@ export class AppComponent {
     }
   }
 
-  determineStrokeColor(): string {
+  determineStrokeColor(): object {
     if (this.endPoint <= .58 && this.endPoint > .4) {
-      return 'orange-circle'
+      return { 'stroke': '#ff883e' }
     } else if (this.endPoint <= .4 && this.endPoint > .28) {
-      return 'yellow-circle'
+      return { 'stroke': '#ffd526' }
     } else if (this.endPoint <= .28 && this.endPoint > .19) {
-      return 'blue-circle'
+      return { 'stroke': '#0191fd' }
     } else if (this.endPoint <= .19) {
-      return 'green-circle'
+      return { 'stroke': '#3bdb93' }
     } else {
-      return 'red-circle'
+      return { 'stroke': '#ff6062' }
     }
   }
 
@@ -100,21 +98,20 @@ export class AppComponent {
 
   }
 
-  classStatus(key: string, value: any) {
+  classStatus(key: string, value: any): object {
     const status = this.CREDIT_API(key, value)
     switch (status) {
       case "good":
-        return 'greenClass';
-        break;
+        return { 'border-left': 'solid 4px #3bdb93' };
+
       case "avg":
-        return 'yellowClass';
-        break;
+        return { 'border-left': 'solid 4px #ffd526' };
+
       case "bad":
-        return 'redClass';
-        break;
+        return { 'border-left': 'solid 4px #ff6062' };
+
       default:
-        return '';
-        break;
+        return {}
     }
   }
 

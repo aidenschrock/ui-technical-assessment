@@ -34,10 +34,9 @@
 }
 
 .factor-card {
-  h3 {
+  h4 {
     margin: unset;
   }
-
   p {
     margin: unset;
   }
@@ -57,6 +56,11 @@
 }
 
 .insights {
+  .insight-counter {
+    .insights-header {
+      margin-top:  10%;
+    }
+  }
   justify-content: center ;
   display: flex;
   flex-direction: column;
@@ -72,19 +76,8 @@
   justify-content: center;
   width: 5em;
   height: 5em;
-  background-color: #3ddb93;
+  background-color: $green;
   border-radius: 50%;
-}
-
-.greenClass {
-  border-left: solid 4px #3bdb93;
-}
-.redClass {
-  border-left: solid 4px #ff6062;
-}
-
-.yellowClass {
-  border-left: solid 4px #ffd526;
 }
 
 .gauge {
@@ -98,64 +91,66 @@
     fill: none;
     stroke-linecap: round;
   }
-
   text {
     font-family: "Source Sans Pro", sans-serif;
     fill: #515556;
-
   }
-
   .gauge-limits {
     fill: #acafae;
   }
-
 }
-
-
-
 
 #outline {
   stroke: transparent;
 }
 #bad {
-  stroke: #ff6062;
+  stroke: $red;
 }
 #low {
-  stroke: #ff883e;
+  stroke: $orange;
 }
 #avg {
-  stroke: #ffd526;
+  stroke: $yellow;
 }
 #high {
-  stroke: #0191fd;
+  stroke: $blue;
 }
 #good {
-  stroke: #3bdb93;
+  stroke: $green;
 }
 #dot {
   fill: white;
-
   stroke-width: 20;
-
 }
 
-.red-circle {
-  stroke: #ff6062;
+@media only screen and (max-width: $md) {
+  .root {
+    height: 100%;
+  }
+  .container {
+    width: auto;
+    flex-direction: column;
+    .card {
+      width: auto;
+      svg {
+        height: 250px;
+      }
+    }
+    .insights {
+      margin-top: 5%;
+      width: auto;
+      h3 {
+        margin-left: 2%;
+        width: 90%;
+      }
+      .insight-counter {
+        display: flex;
+        flex-direction: row;
+        .insights-header {
+          margin-top: 4%;
+          margin-left: 5%;
+        }
+      }
+    }
+  }
 }
-
-.orange-circle{
-  stroke:#ff883e;
-}
-
-.yellow-circle{
-  stroke:#ffd526;
-}
-
-.blue-circle{
-  stroke:#0191fd;
-}
-
-.green-circle {
-  stroke:#3bdb93;
-}
-

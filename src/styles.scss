@@ -12,12 +12,30 @@ h2 {
 h3 {
   font-family: "Source Sans Pro", sans-serif;
   color: #404345;
+  font-size: 1.8em;
+  font-weight: 500;
+  margin-top: 3%;
 }
 h4 {
+  font-size: 1.2em;
   font-family: "Source Sans Pro", sans-serif;
+  color: #404345;
 }
 p {
   font-family: "Source Sans Pro", sans-serif;
   font-size: 1em;
   color: #959898;
 }
+
+// breakpoint max width variables
+$lg: 1440px;
+$md: 768px;
+$sm: 425px;
+$xs: 375px;
+$xxs: 320px;
+
+$green: #3bdb93;
+$blue: #0191fd;
+$yellow: #ffd526;
+$orange: #ff883e;
+$red: #ff6062;

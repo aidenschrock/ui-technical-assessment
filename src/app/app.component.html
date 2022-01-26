@@ -13,7 +13,6 @@ Instructions
     <div class="card">
       <h2>Welcome back, Munish!</h2>
       <p>Your Credit Score</p>
-      <!-- <app-score-gauge></app-score-gauge> -->
       <div>
         <div class="gauge">
           <svg viewBox="0 0 1000 580">
@@ -28,7 +27,7 @@ Instructions
               cy="0"
               cx="0"
               id="dot"
-              [ngClass]="determineStrokeColor()"
+              [ngStyle]="determineStrokeColor()"
             >
               <animateMotion
                 id="animation"
@@ -83,33 +82,32 @@ Instructions
           </svg>
         </div>
       </div>
-
-      <div class="credit-arc"></div>
       <div class="credit-factors">
         <p>Credit Factors</p>
         <div class="credit-factor-cards">
           <div
             *ngFor="let data of userData | keyvalue: sortInOrder"
-            [ngClass]="classStatus(data.key, data.value)"
+            [ngStyle]="classStatus(data.key, data.value)"
             class="factor-card"
           >
-            <h3>{{ data.value }}</h3>
+            <h4>{{ data.value }}</h4>
             <p>{{ data.key }}</p>
           </div>
         </div>
       </div>
     </div>
     <div class="insights">
-      <div class="bubble">
-        <h1>{{ insightNumber() }}</h1>
+      <div class="insight-counter">
+        <div class="bubble">
+          <h1>{{ insightNumber() }}</h1>
+        </div>
+        <h1 class="insights-header">Insights</h1>
       </div>
-      <h1>Insights</h1>
+
       <h3>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Sagittis id
-        consectetur purus ut faucibus pulvinar elementum.
+        Learn what affects your credit scores and what you can do to improve
+        them.
       </h3>
     </div>
   </div>
-  <div></div>
 </div>
