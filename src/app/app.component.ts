@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { concatMap } from 'rxjs';
+import * as d3 from 'd3';
+import { svg } from 'd3';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +10,48 @@ import { concatMap } from 'rxjs';
 export class AppComponent {
   userData: Object = {};
 
-  red: Boolean = true;
-  status: string = '';
+  keyPoints: string = '1; 0.5';
+  endPoint: number = 1;
+  creditScore: number = 670;
+  creditScoreText: string = 'Average';
+
+
+
   constructor() {
     this.randomizeValues()
+    this.calculatePercentage(this.creditScore)
   }
 
+  calculatePercentage(value: number) {
+    this.endPoint = 1 - ((value - 300) / 550)
+    console.log(this.endPoint)
+    this.keyPoints = '1;' + this.endPoint
+    if (this.endPoint <= .58 && this.endPoint > .4) {
+      this.creditScoreText = "Fair"
+    } else if (this.endPoint <= .4 && this.endPoint > .28) {
+      this.creditScoreText = "Good"
+    } else if (this.endPoint <= .28 && this.endPoint > .19) {
+      this.creditScoreText = "Very Good"
+    } else if (this.endPoint <= .19) {
+      this.creditScoreText = "Exceptional"
+    } else {
+      this.creditScoreText = "Poor"
+    }
+  }
+
+  determineStrokeColor(): string {
+    if (this.endPoint <= .58 && this.endPoint > .4) {
+      return 'orange-circle'
+    } else if (this.endPoint <= .4 && this.endPoint > .28) {
+      return 'yellow-circle'
+    } else if (this.endPoint <= .28 && this.endPoint > .19) {
+      return 'blue-circle'
+    } else if (this.endPoint <= .19) {
+      return 'green-circle'
+    } else {
+      return 'red-circle'
+    }
+  }
 
   generateAge(): string {
     const currentDate = new Date();
@@ -22,7 +59,6 @@ export class AppComponent {
       return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
     }
     const creditHistoryStartDate = randomDate(new Date(1990, 0, 1), currentDate)
-    console.log(creditHistoryStartDate)
     let years = currentDate.getFullYear() - creditHistoryStartDate.getFullYear();
     let months = currentDate.getMonth() - creditHistoryStartDate.getMonth();
 
@@ -50,6 +86,9 @@ export class AppComponent {
     const hardInquires = this.randomIntFromInterval(0, 10);
     const age = this.generateAge()
 
+    this.creditScore = this.randomIntFromInterval(300, 850);
+    this.calculatePercentage(this.creditScore)
+    document.querySelector("animateMotion")?.beginElement()
     this.userData = {
       "Credit Card Utilization": utilization,
       "Payment History": paymentHistory,
@@ -58,6 +97,7 @@ export class AppComponent {
       "Total Accounts": totalAccounts,
       "Hard Inquiries": hardInquires,
     }
+
   }
 
   classStatus(key: string, value: any) {

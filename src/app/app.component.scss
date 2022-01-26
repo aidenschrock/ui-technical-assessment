@@ -57,6 +57,7 @@
 }
 
 .insights {
+  justify-content: center ;
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -76,12 +77,85 @@
 }
 
 .greenClass {
-  border-left: solid 4px green;
+  border-left: solid 4px #3bdb93;
 }
 .redClass {
-  border-left: solid 4px red;
+  border-left: solid 4px #ff6062;
 }
 
 .yellowClass {
-  border-left: solid 4px yellow;
+  border-left: solid 4px #ffd526;
 }
+
+.gauge {
+  padding: 10%;
+  svg {
+    max-width: 100%;
+  }
+  path {
+    stroke-width: 35;
+    stroke: #ecf0f1;
+    fill: none;
+    stroke-linecap: round;
+  }
+
+  text {
+    font-family: "Source Sans Pro", sans-serif;
+    fill: #515556;
+
+  }
+
+  .gauge-limits {
+    fill: #acafae;
+  }
+
+}
+
+
+
+
+#outline {
+  stroke: transparent;
+}
+#bad {
+  stroke: #ff6062;
+}
+#low {
+  stroke: #ff883e;
+}
+#avg {
+  stroke: #ffd526;
+}
+#high {
+  stroke: #0191fd;
+}
+#good {
+  stroke: #3bdb93;
+}
+#dot {
+  fill: white;
+
+  stroke-width: 20;
+
+}
+
+.red-circle {
+  stroke: #ff6062;
+}
+
+.orange-circle{
+  stroke:#ff883e;
+}
+
+.yellow-circle{
+  stroke:#ffd526;
+}
+
+.blue-circle{
+  stroke:#0191fd;
+}
+
+.green-circle {
+  stroke:#3bdb93;
+}
+
