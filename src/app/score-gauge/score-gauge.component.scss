@@ -1,0 +1,45 @@
+@import "../../styles.scss";
+
+.gauge {
+  padding: 10%;
+  svg {
+    max-width: 100%;
+  }
+  path {
+    stroke-width: 35;
+    stroke: #ecf0f1;
+    fill: none;
+    stroke-linecap: round;
+  }
+  text {
+    font-family: "Source Sans Pro", sans-serif;
+    fill: #515556;
+  }
+  .gauge-limits {
+    fill: #acafae;
+  }
+}
+
+#outline {
+  stroke: transparent;
+}
+#bad {
+  stroke: $red;
+}
+#low {
+  stroke: $orange;
+}
+#avg {
+  stroke: $yellow;
+}
+#high {
+  stroke: $blue;
+}
+#good {
+  stroke: $green;
+}
+#dot {
+  fill: white;
+  stroke-width: 20;
+}
+

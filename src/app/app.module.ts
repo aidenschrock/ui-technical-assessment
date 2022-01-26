@@ -3,17 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
+import { ScoreGaugeComponent } from './score-gauge/score-gauge.component';
+
+import { CreditAPIService } from './credit-api.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ScoreGaugeComponent
   ],
   imports: [
     BrowserModule,
     CommonModule
   ],
-  providers: [],
+  providers: [
+    CreditAPIService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

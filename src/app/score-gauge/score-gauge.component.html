@@ -1,0 +1,55 @@
+<div class="gauge">
+  <svg viewBox="0 0 1000 580">
+    <path id="outline" d="M 950 500 A 450 450 0 0 0 50 500"></path>
+    <path id="bad" d="M 362 70 A 450 450 0 0 0 50 500"></path>
+    <path id="low" d="M 580 58 A 450 450 0 0 0 410 58"></path>
+    <path id="avg" d="M 750 127 A 450 450 0 0 0 630 68"></path>
+    <path id="high" d="M 850 220 A 450 450 0 0 0 790 160"></path>
+    <path id="good" d="M 950 500 A 450 450 0 0 0 880 260"></path>
+    <circle r="25" cy="0" cx="0" id="dot" [ngStyle]="determineStrokeColor()">
+      <animateMotion
+        id="animation"
+        dur="1s"
+        calcMode="linear"
+        [attr.keyPoints]="keyPoints"
+        keyTimes="0;1"
+        repeatCount="1"
+        fill="freeze"
+      >
+        <mpath xlink:href="#outline"></mpath>
+      </animateMotion>
+    </circle>
+    <text
+      text-anchor="middle"
+      alignment-baseline="middle"
+      x="500"
+      y="350"
+      font-size="180"
+      font-weight="bold"
+    >
+      {{ creditScore }}
+    </text>
+    <text
+      text-anchor="middle"
+      alignment-baseline="middle"
+      x="500"
+      y="500"
+      font-size="60"
+      font-weight="bold"
+    >
+      {{ creditScoreText }}
+    </text>
+    <text class="gauge-limits" x="15" y="570" font-size="45" font-weight="bold">
+      300
+    </text>
+    <text
+      class="gauge-limits"
+      x="915"
+      y="570"
+      font-size="45"
+      font-weight="bold"
+    >
+      850
+    </text>
+  </svg>
+</div>

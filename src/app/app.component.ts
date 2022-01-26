@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CreditAPIService } from './credit-api.service';
 
 @Component({
   selector: 'app-root',
@@ -7,48 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   userData: Object = {};
-
+  creditScore: number = 0;
   keyPoints: string = '1; 0.5';
   endPoint: number = 1;
-  creditScore: number = 670;
-  creditScoreText: string = 'Average';
 
-
-
-  constructor() {
+  constructor(private creditAPIService: CreditAPIService) {
     this.randomizeValues()
-    this.calculatePercentage(this.creditScore)
-  }
-
-  calculatePercentage(value: number) {
-    this.endPoint = 1 - ((value - 300) / 550)
-    console.log(this.endPoint)
-    this.keyPoints = '1;' + this.endPoint
-    if (this.endPoint <= .58 && this.endPoint > .4) {
-      this.creditScoreText = "Fair"
-    } else if (this.endPoint <= .4 && this.endPoint > .28) {
-      this.creditScoreText = "Good"
-    } else if (this.endPoint <= .28 && this.endPoint > .19) {
-      this.creditScoreText = "Very Good"
-    } else if (this.endPoint <= .19) {
-      this.creditScoreText = "Exceptional"
-    } else {
-      this.creditScoreText = "Poor"
-    }
-  }
-
-  determineStrokeColor(): object {
-    if (this.endPoint <= .58 && this.endPoint > .4) {
-      return { 'stroke': '#ff883e' }
-    } else if (this.endPoint <= .4 && this.endPoint > .28) {
-      return { 'stroke': '#ffd526' }
-    } else if (this.endPoint <= .28 && this.endPoint > .19) {
-      return { 'stroke': '#0191fd' }
-    } else if (this.endPoint <= .19) {
-      return { 'stroke': '#3bdb93' }
-    } else {
-      return { 'stroke': '#ff6062' }
-    }
   }
 
   generateAge(): string {
@@ -83,10 +48,8 @@ export class AppComponent {
     const totalAccounts = this.randomIntFromInterval(1, 30);
     const hardInquires = this.randomIntFromInterval(0, 10);
     const age = this.generateAge()
+    this.creditScore = this.randomIntFromInterval(300, 850)
 
-    this.creditScore = this.randomIntFromInterval(300, 850);
-    this.calculatePercentage(this.creditScore)
-    document.querySelector("animateMotion")?.beginElement()
     this.userData = {
       "Credit Card Utilization": utilization,
       "Payment History": paymentHistory,
@@ -95,21 +58,17 @@ export class AppComponent {
       "Total Accounts": totalAccounts,
       "Hard Inquiries": hardInquires,
     }
-
   }
 
   classStatus(key: string, value: any): object {
-    const status = this.CREDIT_API(key, value)
+    const status = this.creditAPIService.CREDIT_API(key, value)
     switch (status) {
       case "good":
         return { 'border-left': 'solid 4px #3bdb93' };
-
       case "avg":
         return { 'border-left': 'solid 4px #ffd526' };
-
       case "bad":
         return { 'border-left': 'solid 4px #ff6062' };
-
       default:
         return {}
     }
@@ -121,39 +80,10 @@ export class AppComponent {
   insightNumber(): number {
     let insights = 0;
     for (const [key, value] of Object.entries(this.userData)) {
-      if (this.CREDIT_API(key, value) != 'good') {
+      if (this.creditAPIService.CREDIT_API(key, value) != 'good') {
         insights += 1;
       }
     }
-
     return insights
   }
-
-  CREDIT_API = (detail: any, title: any): string | void => {
-    let data;
-    if (detail !== "Age of Credit History") {
-      data = parseInt(title);
-    } else {
-      let years = title.split(" ")[0];
-      return years < 1 ? "bad" : years < 3 ? "avg" : "good";
-    }
-    if (detail === "Credit Card Utilization") {
-      return data < 25 ? "good" : data > 50 ? "bad" : "avg";
-    }
-    if (detail === "Total Accounts") {
-      return data > 8 ? "good" : data <= 3 ? "bad" : "avg";
-    }
-    if (detail === "Derogatory Marks") {
-      return data < 2 ? "good" : data <= 5 ? "avg" : "bad";
-    }
-    if (detail === "Payment History") {
-      return data > 80 ? "good" : data >= 60 ? "avg" : "bad";
-    }
-    if (detail === "Hard Inquiries") {
-      return data < 2 ? "good" : data <= 5 ? "avg" : "bad";
-    }
-  };
-
-
-
 }
